@@ -176,7 +176,7 @@ S.done=S.done||{};S.review=S.review||{};S.attempt=S.attempt||{};S.notes=S.notes|
 const sync={db:null,doc:null,t:null};
 const badge=m=>{let b=document.getElementById("syncb");if(!b){b=document.createElement("div");b.id="syncb";document.body.appendChild(b)}b.textContent=m};
 const SBU="https://jwwwuywctxuxwfnjpdah.supabase.co/rest/v1/progress",SBK="sb_publishable_chAiuzLyG4BxYxPazTPsrg_3o_iu2UJ";
-const H={apikey:SBK,Authorization:"Bearer "+SBK,"Content-Type":"application/json"};
+const H={apikey:SBK,"Content-Type":"application/json"};
 const pushRemote=()=>{clearTimeout(sync.t);sync.t=setTimeout(async()=>{try{badge("Saving…");const r=await fetch(SBU,{method:"POST",headers:{...H,Prefer:"resolution=merge-duplicates,return=minimal"},body:JSON.stringify({id:"main",data:S,updated:S._t||Date.now()})});if(!r.ok)throw 0;badge("Synced ✓")}catch(e){badge("Sync failed (saved locally)")}},800)};
 const save=()=>{S._t=Date.now();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}pushRemote()};
 const quantProfReviewIds=["quantprof-uIV5Dh2xzmEVAwHT4efH","quantprof-skdZmSe2Qv3NgAkHlRKI","quantprof-hVD5N846XRLILTDt1RDH","quantprof-kvjEF6xI0y0tED9rmIG4","quantprof-j0TeqVqDaE9OrA7nSd38","quantprof-w2iRucpnTRNw7XEsavSJ","quantprof-2ggty4JtNUFf4UvtFr9H","quantprof-TSjlNsLKOAxbLhjRWWsD","quantprof-ZbvNW9DHjuiPyBGOhCcm","quantprof-Wnt84EeRdc1mqvjHlvmZ"];
